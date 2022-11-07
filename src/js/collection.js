@@ -15,14 +15,14 @@ fetchGenreId()
     genreId.data.genres.forEach(function (genre) {
       genreCollection[genre.id] = genre.name
     })
-    console.log(genreCollection); 
+    // console.log(genreCollection); 
   })
   .catch(error => console.log(error));
 
 
 function fetchMovies(page) {
   fetchPopularMovies(page).then(response => {
-    console.log(response.data.results);
+    // console.log(response.data.results);
   const render = renderMarkUp(response.data.results, genreCollection);
   const renderedPagination = renderPagination(Number(response.data.page), Number(response.data.total_pages))
     collection.innerHTML = render;
@@ -36,5 +36,6 @@ function fetchMovies(page) {
 pagination.addEventListener("click", (e) => {
   e.preventDefault()
   fetchMovies(e.target.dataset.page)
+  console.log(e.target.dataset.page);
 })
 fetchMovies(page)

@@ -1,7 +1,6 @@
 import { buildUrl } from "./collectionFetch";
-
 export function renderMarkUp(arrMovies, genreCollection) {
-    console.log(arrMovies);
+    // console.log(arrMovies);
     
      return arrMovies.map(
       ({
@@ -19,7 +18,7 @@ export function renderMarkUp(arrMovies, genreCollection) {
              }
 
 
-             console.log(genreNames);
+            //  console.log(genreNames);
              
              
              return `
@@ -53,6 +52,13 @@ export function renderMarkUp(arrMovies, genreCollection) {
 export function renderPagination(currentPage, total_pages) {
     let paginationArr = [];
     let paginationLinks = "";
+    let paginationLinksBack = "";
+    let paginationLinksNext = "";
+
+    
+    
+    
+
     // var 1 
     if (currentPage <= 3) {
         if (currentPage > 2) {
@@ -99,17 +105,21 @@ export function renderPagination(currentPage, total_pages) {
 
     paginationArr.forEach(pageNumber => {
         let activeClass = pageNumber === currentPage ? "active" : "";
-     
+
 
         paginationLinks = paginationLinks + `<li class="pagination__item"><a data-page="${pageNumber}" href="${buildUrl(pageNumber)}" class="pagination__link ${activeClass} ">${pageNumber}</a></li>`
-        
+
     });
 
+        paginationLinksBack = paginationLinksBack + `<li class="pagination__item"><a data-page="${currentPage - 1}" href="${buildUrl(currentPage - 1)}" class="pagination__link">&lt;</a></li>`
+        paginationLinksNext = paginationLinksNext + `<li class="pagination__item"><a data-page="${currentPage + 1}" href="${buildUrl(currentPage + 1)}" class="pagination__link">&gt;</a></li>`
+    
     return `
     <ul class="pagination__list">
-        <li class="pagination__item"><a href="" class="pagination__link">&lt;</a></li>
+        ${paginationLinksBack}
         ${paginationLinks}
-        <li class="pagination__item"><a href="" class="pagination__link">&gt;</a></li>
+        ${paginationLinksNext}
+     
     </ul>
     `
     

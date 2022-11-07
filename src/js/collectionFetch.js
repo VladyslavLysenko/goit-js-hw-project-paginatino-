@@ -2,6 +2,7 @@
 import axios from 'axios';
 
 export function buildUrl(pageNumber) {
+    // console.log(pageNumber);
     const key = `e145377b3a98d62607e7dc90339d279b`;
     const baseUrl = `https://api.themoviedb.org/3/trending/`
     const mediaType = `movie`;
